@@ -1,35 +1,36 @@
-# WebLogin Flask
+# WebLogin Flask (Login & Register)
 
 ## Deskripsi Proyek
 
-WebLogin Flask adalah proyek aplikasi web sederhana yang dibangun menggunakan **Python Flask** untuk mempelajari dan mengimplementasikan sistem **login (autentikasi pengguna)**. Proyek ini dirancang khusus untuk developer level **beginner–intermediate** yang ingin memahami alur kerja autentikasi di Flask secara rapi, terstruktur, dan mudah dikembangkan.
+WebLogin Flask adalah proyek aplikasi web berbasis **Python Flask** yang mengimplementasikan sistem **autentikasi pengguna lengkap**, mencakup fitur **registrasi (register)** dan **login**. Proyek ini dikembangkan sebagai lanjutan dari versi sebelumnya yang hanya memiliki login, dengan penambahan alur pendaftaran akun serta penyesuaian struktur folder agar lebih rapi dan mendekati standar aplikasi Flask yang scalable.
 
-Fokus utama proyek ini bukan pada tampilan visual yang kompleks, melainkan pada **struktur proyek, alur autentikasi, penggunaan Flask-WTF, serta pemisahan logika backend dan frontend**.
+Proyek ini ditujukan untuk developer level **beginner–intermediate** yang ingin benar-benar memahami bagaimana sistem autentikasi bekerja di Flask, mulai dari validasi form, routing, template, hingga alur data user.
 
 ---
 
 ## Tujuan Proyek
 
-Proyek ini dibuat dengan tujuan:
+Proyek ini dibuat untuk:
 
-* Memahami cara kerja routing di Flask
-* Menerapkan sistem login menggunakan Flask-WTF
-* Mengenal konsep template inheritance dengan Jinja2
-* Membangun struktur folder Flask yang rapi dan scalable
-* Menjadi fondasi untuk pengembangan fitur lanjutan (register, database, session, dll)
+* Memahami alur autentikasi user (register & login) di Flask
+* Menggunakan Flask-WTF untuk validasi form
+* Menerapkan template inheritance menggunakan Jinja2
+* Membiasakan diri dengan struktur folder Flask yang lebih terorganisir
+* Menjadi fondasi sebelum menggunakan database dan sistem autentikasi yang lebih kompleks
 
-Jika kamu sedang belajar Flask dan ingin **belajar melalui proyek nyata**, repository ini cocok dijadikan referensi.
+Proyek ini sengaja dibuat **sederhana namun benar secara konsep**, agar mudah dikembangkan ke tahap berikutnya.
 
 ---
 
 ## Fitur Utama
 
-* Halaman Login
-* Validasi form menggunakan Flask-WTF
+* Registrasi akun (Register)
+* Login pengguna
+* Validasi form dengan Flask-WTF
 * Flash message (success & error)
-* Template inheritance (base.html)
-* Struktur proyek terorganisir
+* Template inheritance (`base.html`)
 * Styling CSS sederhana
+* Struktur folder yang diperbarui dan lebih rapi
 
 ---
 
@@ -45,27 +46,30 @@ Jika kamu sedang belajar Flask dan ingin **belajar melalui proyek nyata**, repos
 
 ## Struktur Folder
 
+Struktur folder telah diperbarui untuk menyesuaikan penambahan fitur register dan pemisahan logika aplikasi:
+
 ```
 weblogin/
 │
 ├── app/
 │   ├── __init__.py        # Inisialisasi aplikasi Flask
-│   ├── routes.py          # Routing / endpoint aplikasi
-│   ├── forms.py           # Form Flask-WTF
+│   ├── routes.py          # Routing login & register
+│   ├── forms.py           # Form Login & Register (Flask-WTF)
 │   ├── templates/
 │   │   ├── base.html      # Template utama
 │   │   ├── login.html     # Halaman login
+│   │   ├── register.html  # Halaman register
 │   │   └── home.html      # Halaman home
 │   └── static/
 │       └── css/
 │           └── style.css  # Styling CSS
 │
 ├── run.py                 # Entry point aplikasi
-├── requirements.txt       # Daftar dependency
-└── README.md              # Dokumentasi proyek
+├── requirements.txt       # Dependency proyek
+└── README.md              # Dokumentasi
 ```
 
-Struktur ini mengikuti praktik umum pada proyek Flask sehingga mudah dikembangkan ke skala yang lebih besar.
+Struktur ini memudahkan penambahan fitur lanjutan seperti database, session, dan proteksi halaman.
 
 ---
 
@@ -78,7 +82,7 @@ git clone https://github.com/username/weblogin.git
 cd weblogin
 ```
 
-### 2. Buat Virtual Environment (Opsional tapi Disarankan)
+### 2. Buat Virtual Environment (Disarankan)
 
 ```bash
 python -m venv venv
@@ -98,7 +102,7 @@ pip install -r requirements.txt
 python run.py
 ```
 
-Akses aplikasi melalui browser:
+Akses melalui browser:
 
 ```
 http://127.0.0.1:5000
@@ -106,44 +110,45 @@ http://127.0.0.1:5000
 
 ---
 
-## Alur Login Sederhana
+## Alur Autentikasi
 
-1. User mengisi email dan password pada halaman login
+### Register
+
+1. User mengisi form register
 2. Data divalidasi menggunakan Flask-WTF
-3. Jika data sesuai (hardcode / simulasi), user dianggap berhasil login
-4. Flash message ditampilkan sesuai hasil login
+3. Jika valid, akun berhasil didaftarkan (simulasi / belum database)
+4. Flash message ditampilkan
 
-Catatan: Pada versi ini **belum menggunakan database**, sehingga cocok sebagai tahap awal pembelajaran.
+### Login
+
+1. User memasukkan email dan password
+2. Data diverifikasi sesuai data yang tersedia
+3. Jika sesuai, login berhasil dan user diarahkan ke halaman utama
+
+Catatan: Versi ini **belum menggunakan database**, sehingga data user masih bersifat simulasi untuk keperluan pembelajaran.
 
 ---
 
-## Pengembangan Selanjutnya (Opsional)
+## Pengembangan Selanjutnya
 
-Beberapa fitur yang bisa kamu tambahkan:
+Beberapa pengembangan yang sangat disarankan:
 
-* Register user
-* Login menggunakan database (SQLite / MySQL)
+* Integrasi database (SQLite / MySQL)
 * Password hashing (Werkzeug)
 * Session & logout
-* Proteksi halaman (login required)
-* Role-based access
-
-Proyek ini sengaja dibuat sederhana agar mudah dikembangkan sesuai kebutuhan.
+* Proteksi halaman dengan `login_required`
+* Role user (admin / user)
 
 ---
 
-## Catatan Penting
+## Catatan untuk Pembelajar
 
-Jika kamu merasa proyek ini terlalu sederhana, itu **bukan kelemahan**, melainkan desain yang disengaja. Banyak developer pemula gagal memahami framework karena langsung membuat sistem yang terlalu kompleks.
+Jika proyek ini terlihat sederhana, itu disengaja. Banyak developer pemula gagal memahami Flask karena langsung melompat ke sistem yang kompleks tanpa memahami alur autentikasi dasar.
 
-Menguasai dasar dengan benar jauh lebih bernilai dibanding sekadar banyak fitur tapi tidak paham alurnya.
+Proyek ini dirancang sebagai **pondasi yang kuat**, bukan sekadar demo.
 
 ---
 
 ## Lisensi
 
-Proyek ini bersifat **open-source** dan bebas digunakan untuk belajar maupun dikembangkan lebih lanjut.
-
----
-
-Jika README ini kamu gunakan untuk portfolio, pastikan repository kamu bersih, rapi, dan mudah dipahami oleh recruiter atau developer lain.
+Proyek ini bersifat open-source dan bebas digunakan untuk belajar maupun dikembangkan lebih lanjut.
